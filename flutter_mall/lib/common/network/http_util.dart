@@ -5,25 +5,25 @@ import 'package:dio/dio.dart';
  */
 class HttpUtil {
 
-  static HttpUtil instance;
-  Dio dio;
-  BaseOptions options;
+  static HttpUtil _instance;
+  Dio _dio;
+  BaseOptions _options;
 
   /**
    * 创建单例
    */
   static HttpUtil getInstance() {
     print('getInstance');
-    if (instance == null) {
-      instance = new HttpUtil();
+    if (_instance == null) {
+      _instance = new HttpUtil();
     }
-    return instance;
+    return _instance;
   }
 
   HttpUtil() {
    print('dio赋值');
     // 或者通过传递一个 `options`来创建dio实例
-    options = BaseOptions(
+    _options = BaseOptions(
       //连接服务器超时时间，单位是毫秒.
       connectTimeout: 10000,
       ///  响应流上前后两次接受到数据的间隔，单位为毫秒。如果两次间隔超过[receiveTimeout]，
@@ -32,7 +32,7 @@ class HttpUtil {
       receiveTimeout: 3000,
       headers: {},
     );
-    dio = new Dio(options);
+    _dio = new Dio(_options);
 
     // 添加拦截器
     // dio.interceptors.add(element)
@@ -43,7 +43,7 @@ class HttpUtil {
     print('get请求启动! url：$url ,body: $data');
     Response response;
     try {
-      response = await dio.get(
+      response = await _dio.get(
         url,
         queryParameters: data,
         cancelToken: cancelToken,
@@ -62,7 +62,7 @@ class HttpUtil {
     print('post请求启动! url：$url ,body: $data');
     Response response;
     try {
-      response = await dio.post(
+      response = await _dio.post(
         url,
         data: data,
         cancelToken: cancelToken,
