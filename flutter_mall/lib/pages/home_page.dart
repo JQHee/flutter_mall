@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/widgets/home_swiper.dart';
+import 'package:flutter_mall/widgets/home_top_navigator.dart';
 import 'package:flutter_mall/common/service/service_method.dart';
 import 'dart:convert';
 
@@ -42,9 +43,11 @@ String homePageContent='正在获取数据';
               if (snapshop.hasData) {
                 var data = json.decode(snapshop.data.toString());
                 List<Map>  swiper = (data['data']['slides'] as List).cast();
+                List<Map>  navigatorList = (data['data']['category'] as List).cast();
                 return Column(
                   children: <Widget>[
-                    HomeSwiper(swiperDataList: swiper)
+                    HomeSwiper(swiperDataList: swiper),
+                    HomeTopNavigator(navigatorList: navigatorList),
                   ],
                 );
               } else {
