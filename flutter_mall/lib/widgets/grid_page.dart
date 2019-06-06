@@ -12,6 +12,8 @@ class GridPage extends StatefulWidget {
   final double columnSpacing; //列间隔
   final double rowSpacing; //行间隔
   final double itemRatio; //每个item的宽高比，默认正方形
+  final double height; // 高度必须设置
+  final EdgeInsets padding;
 
   GridPage({
     @required this.children,
@@ -20,6 +22,8 @@ class GridPage extends StatefulWidget {
     this.columnSpacing = 0.0,
     this.rowSpacing = 0.0,
     this.itemRatio = 1.0,
+    this.height = 0,
+    this.padding,
   });
 
   @override
@@ -52,8 +56,8 @@ class _GridPageState extends State<GridPage> {
     return Material(
       color: Colors.white,
       child: Container(
-        height: 190,
-        padding: EdgeInsets.all(5),
+        height: widget.height,
+        padding: widget.padding,
         child: Column(
           children: <Widget>[
             Expanded(

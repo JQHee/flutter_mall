@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                 return Column(
                   children: <Widget>[
                     HomeSwiper(swiperDataList: swiper),
-                    GridPage(children: navigatorItems, column: 5, row: 2),
+                    GridPage(children: navigatorItems, column: 5, row: 2, height: 190, padding: EdgeInsets.all(5),),
                   ],
                 );
               } else {
