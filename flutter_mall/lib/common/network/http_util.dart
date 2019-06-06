@@ -1,54 +1,64 @@
+
+import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter_mall/common/network/http_header.dart';
+
 
 /**
  * 网络请求工具
  */
 class HttpUtil {
 
-  static HttpUtil _instance;
-  Dio _dio;
-  BaseOptions _options;
+  static final HttpUtil _instance = HttpUtil._init();
+  static Dio _dio;
+  static BaseOptions _options = getDefOptions();
 
-  /**
-   * 创建单例
-   */
-  static HttpUtil getInstance() {
-    print('getInstance');
-    if (_instance == null) {
-      _instance = new HttpUtil();
-    }
+    factory HttpUtil() {
     return _instance;
   }
 
-  HttpUtil() {
-    // 或者通过传递一个 `options`来创建dio实例
-    _options = BaseOptions(
-      //连接服务器超时时间，单位是毫秒.
-      connectTimeout: 10000,
-      ///  响应流上前后两次接受到数据的间隔，单位为毫秒。如果两次间隔超过[receiveTimeout]，
-      ///  [Dio] 将会抛出一个[DioErrorType.RECEIVE_TIMEOUT]的异常.
-      ///  注意: 这并不是接收数据的总时限.
-      receiveTimeout: 3000,
-      headers: {},
-    );
-    _dio = new Dio(_options);
+  HttpUtil._init() {
+    _dio = new Dio();
+  }
 
-    // 添加拦截器
-    // dio.interceptors.add(element)
+  static BaseOptions getDefOptions() {
+    BaseOptions options = BaseOptions();
+    options.connectTimeout = 10 * 1000;
+    options.receiveTimeout = 20 * 1000;
+    options.contentType = ContentType.parse('application/x-www-form-urlencoded');
 
+  /*
+    Map<String, dynamic> headers = Map<String, dynamic>();
+    headers['Accept'] = 'application/json';
+
+    String platform;
+    if(Platform.isAndroid) {
+      platform = "Android";
+    } else if(Platform.isIOS) {
+      platform = "IOS";
+    }
+    headers['OS'] = platform;
+    options.headers = HttpHeader.getHttpHeader();
+    */
+
+    return options;
+  }
+
+  setOptions(BaseOptions options) {
+    _options = options;
+    _dio.options = _options;
   }
 
   /**
    * GET 请求
    */
-   get(url, parameters, headers, cancelToken) async {
-    print('get请求启动! url：$url ,body: $parameters');
+   get(url, {data, cancelToken}) async {
+    print('get请求启动! url：$url ,body: $data');
     Response response;
     try {
-      _dio.options.headers = headers;
       response = await _dio.get(
         url,
-        queryParameters: parameters,
+        queryParameters: data,
         cancelToken: cancelToken,
       );
       print('get请求成功!response.data：${response.data}');
@@ -64,11 +74,10 @@ class HttpUtil {
   /**
    * POST 请求
    */
-  post(url, data, headers, cancelToken) async {
+  post(url, {data, cancelToken}) async {
     print('post请求启动! url：$url ,body: $data');
     Response response;
     try {
-      _dio.options.headers = headers;
       response = await _dio.post(
         url,
         data: data,
