@@ -27,7 +27,7 @@ class _IndexPageState extends State<IndexPage> {
       title: Text('首页')
     ),
      BottomNavigationBarItem(
-      icon: Icon(CupertinoIcons.shopping_cart),
+      icon: Icon(CupertinoIcons.search),
       title: Text('分类')
     ),
      BottomNavigationBarItem(
