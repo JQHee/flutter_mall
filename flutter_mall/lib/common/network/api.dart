@@ -6,9 +6,9 @@
 class API {
 
   /// 基本地址
-  static const BASE_URL = 'http://www.baidu.com';
+  static const BASE_URL = 'http://v.jspang.com:8088/baixing';
 
-  /// 首页
-  static const HOME = BASE_URL + 'HomeData';
+  /// 商家首页信息
+  static const HOME = BASE_URL + '/wxmini/homePageContent';
 
 }

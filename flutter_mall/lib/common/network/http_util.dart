@@ -41,7 +41,7 @@ class HttpUtil {
   /**
    * GET 请求
    */
-   get(url, {parameters, headers, cancelToken}) async {
+   get(url, parameters, headers, cancelToken) async {
     print('get请求启动! url：$url ,body: $parameters');
     Response response;
     try {
@@ -64,7 +64,7 @@ class HttpUtil {
   /**
    * POST 请求
    */
-  post(url, {data, headers, cancelToken}) async {
+  post(url, data, headers, cancelToken) async {
     print('post请求启动! url：$url ,body: $data');
     Response response;
     try {
