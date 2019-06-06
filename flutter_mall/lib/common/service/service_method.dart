@@ -9,7 +9,8 @@ import 'package:flutter_mall/common/network/http_util.dart';
 Future getHomePageContent() async {
 
   var fromData = {'lon':'115.02932','lat':'35.76189'};
-  Response response = await HttpUtil.getInstance().post(API.HOME, fromData, {}, null);
+  var headers = HttpHeader.getHttpHeader();
+  Response response = await HttpUtil.getInstance().post(API.HOME, fromData, headers, null);
   if (response.statusCode == 200) {
     return response.data;
   } else {
