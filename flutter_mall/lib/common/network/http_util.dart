@@ -21,7 +21,6 @@ class HttpUtil {
   }
 
   HttpUtil() {
-   print('dio赋值');
     // 或者通过传递一个 `options`来创建dio实例
     _options = BaseOptions(
       //连接服务器超时时间，单位是毫秒.
@@ -39,13 +38,17 @@ class HttpUtil {
 
   }
 
-   get(url, {data, options, cancelToken}) async {
-    print('get请求启动! url：$url ,body: $data');
+  /**
+   * GET 请求
+   */
+   get(url, {parameters, headers, cancelToken}) async {
+    print('get请求启动! url：$url ,body: $parameters');
     Response response;
     try {
+      _dio.options.headers = headers;
       response = await _dio.get(
         url,
-        queryParameters: data,
+        queryParameters: parameters,
         cancelToken: cancelToken,
       );
       print('get请求成功!response.data：${response.data}');
@@ -55,13 +58,17 @@ class HttpUtil {
       }
       print('get请求发生错误：$e');
     }
-    return response.data;
+    return response;
   }
 
-  post(url, {data, options, cancelToken}) async {
+  /**
+   * POST 请求
+   */
+  post(url, {data, headers, cancelToken}) async {
     print('post请求启动! url：$url ,body: $data');
     Response response;
     try {
+      _dio.options.headers = headers;
       response = await _dio.post(
         url,
         data: data,
@@ -74,7 +81,7 @@ class HttpUtil {
       }
       print('post请求发生错误：$e');
     }
-    return response.data;
+    return response;
   }
 
 }
