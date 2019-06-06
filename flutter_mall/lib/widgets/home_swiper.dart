@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 /**
@@ -24,12 +25,14 @@ class _HomeSwiperState extends State<HomeSwiper> {
   @override
   Widget build(BuildContext context) {
 
+  /*
    var screenSize = MediaQuery.of(context).size;
    var bannerHeight = screenSize.width / 375.0 * 120;
+   */
     // TODO: implement build
      return Container(
-      height: bannerHeight,
-      width: screenSize.width,
+      height: ScreenUtil().setHeight(240),
+      width: ScreenUtil().setWidth(750),
       child: Swiper(
         itemBuilder: (BuildContext context,int index){
           return Image.network("${widget.swiperDataList[index]['image']}",fit: BoxFit.fill,);
