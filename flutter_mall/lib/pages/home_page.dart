@@ -189,7 +189,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                     textColor: Colors.pink,
                     moreInfoColor: Colors.white,
                     showMore: true,
-                    noMoreText: '',
+                    noMoreText: '加载结束',
                     moreInfo: '加载中',
                     loadReadyText: '上拉加载...',
                   ),
