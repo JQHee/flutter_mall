@@ -3,6 +3,7 @@ import 'package:flutter_mall/widgets/home_swiper.dart';
 import 'package:flutter_mall/widgets/home_top_navigator.dart';
 import 'package:flutter_mall/widgets/grid_page.dart';
 import 'package:flutter_mall/widgets/home_ad_banner.dart';
+import 'package:flutter_mall/widgets/home_leader_phone.dart';
 import 'package:flutter_mall/common/service/service_method.dart';
 import 'dart:convert';
 
@@ -72,6 +73,10 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                 List<Map>  swiper = (data['data']['slides'] as List).cast();
                 List<Map>  navigatorList = (data['data']['category'] as List).cast();
                 String adPicture = data['data']['advertesPicture']['PICTURE_ADDRESS'];
+                // 店长模块
+                String leaderImage = data['data']['shopInfo']['leaderImage'];
+                String leaderPhone = data['data']['shopInfo']['leaderPhone'];
+
 
                 List<Widget> navigatorItems = _buildChildren(navigatorList);
 
@@ -79,7 +84,8 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                   children: <Widget>[
                     HomeSwiper(swiperDataList: swiper),
                     GridPage(children: navigatorItems, column: 5, row: 2, height: 190, padding: EdgeInsets.all(5),),
-                    HomeAdBanner(adPicture: adPicture,)
+                    HomeAdBanner(adPicture: adPicture,),
+                    HomeLeaderPhone(leaderImage: leaderImage,leaderPhone: leaderPhone,),
                   ],
                 );
               } else {

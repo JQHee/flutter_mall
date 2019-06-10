@@ -12,12 +12,12 @@ class HomeAdBanner extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return _HomeAdBanner();
+    return _HomeAdBannerState();
   }
 
 }
 
-class _HomeAdBanner extends State<HomeAdBanner> {
+class _HomeAdBannerState extends State<HomeAdBanner> {
 
 
   @override
