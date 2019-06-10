@@ -5,6 +5,7 @@ import 'package:flutter_mall/pages/home_page.dart';
 import 'package:flutter_mall/pages/cart_page.dart';
 import 'package:flutter_mall/pages/category_page.dart';
 import 'package:flutter_mall/pages/member_page.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /**
  * tabbar 底部导航
@@ -59,6 +60,9 @@ class _IndexPageState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
+
+        // 适配
+    ScreenUtil.instance = ScreenUtil(width: 750,height: 1334)..init(context);
     // TODO: implement build
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 255, 255, 1),
