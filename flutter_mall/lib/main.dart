@@ -3,7 +3,7 @@ import 'package:flutter_mall/pages/index_page.dart';
 
 
 // 序列教程： https://www.cnblogs.com/wangjunwei/tag/flutter/
-// 2019-06-10 -> 15
+// 2019-06-10 -> 16
 
 void main() => runApp(MyApp());
 
