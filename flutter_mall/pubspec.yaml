@@ -32,6 +32,8 @@ dependencies:
   flutter_screenutil: ^0.5.1
   # 拨打电话
   url_launcher: ^5.0.1
+  # 上、下拉加载
+  flutter_easyrefresh: ^1.2.7
 
 
 
