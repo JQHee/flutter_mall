@@ -33,14 +33,13 @@ class _HomeLeaderPhoneState extends State<HomeLeaderPhone> {
     );
   }
 
-  void _launchURL() async {
-    String url = 'tel' + widget.leaderPhone;
+  _launchURL() async {
+    String url = 'tel:' + widget.leaderPhone;
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'url 不能访问，异常';
     }
-
   }
 
 }
