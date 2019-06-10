@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /**
  *  首页店长电话模块
@@ -26,10 +27,20 @@ class _HomeLeaderPhoneState extends State<HomeLeaderPhone> {
     // TODO: implement build
     return Container(
       child: InkWell(
-        onTap: () {},
+        onTap: _launchURL,
         child: Image.network(widget.leaderImage),
       ),
     );
+  }
+
+  void _launchURL() async {
+    String url = 'tel' + widget.leaderPhone;
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'url 不能访问，异常';
+    }
+
   }
 
 }
