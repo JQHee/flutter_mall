@@ -84,8 +84,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                 List<Map> recommendList = (data['data']['recommend'] as List).cast();
 
                 // 楼层标题
-                String floorTitle = data['data']['floor1Pic']['PICTURE_ADDRESS'];
+                String floor1Title = data['data']['floor1Pic']['PICTURE_ADDRESS'];
                 List<Map> floor1 = (data['data']['floor1'] as List).cast();
+                String floor2Title = data['data']['floor2Pic']['PICTURE_ADDRESS'];
+                List<Map> floor2 = (data['data']['floor2'] as List).cast();
+                String floor3Title = data['data']['floor3Pic']['PICTURE_ADDRESS'];
+                List<Map> floor3 = (data['data']['floor3'] as List).cast();
 
                 List<Widget> navigatorItems = _buildChildren(navigatorList);
 
@@ -97,8 +101,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                       HomeAdBanner(adPicture: adPicture,),
                       HomeLeaderPhone(leaderImage: leaderImage,leaderPhone: leaderPhone,),
                       HomeRecommend(recommendList: recommendList,),
-                      HomeFloorTitle(picture_address: floorTitle,),
-                      HomeFloorContent(floorGoodsList: floor1,)
+                      HomeFloorTitle(picture_address: floor1Title,),
+                      HomeFloorContent(floorGoodsList: floor1,),
+                      HomeFloorTitle(picture_address: floor2Title,),
+                      HomeFloorContent(floorGoodsList: floor2,),
+                      HomeFloorTitle(picture_address: floor3Title,),
+                      HomeFloorContent(floorGoodsList: floor3,),
                     ],
                   ),
                 );
