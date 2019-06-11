@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/widgets/category_left_nav.dart';
+import 'package:flutter_mall/widgets/category_right_nav.dart';
+import 'package:flutter_mall/widgets/category_goods_list.dart';
+
+import 'package:provide/provide.dart';
+import 'package:flutter_mall/provide/category_child_provide.dart';
 
 /**
  * 分类
@@ -26,6 +31,12 @@ class _CategoryPageState extends State<CategoryPage> {
         child: Row(
           children: <Widget>[
             CategoryLeftNav(),
+            Column(
+              children: <Widget>[
+                CategoryRightNav(),
+                CategroyGoodsList()
+              ],
+            )
           ],
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 // 自定义
-import 'package:flutter_mall/widgets/home_top_navigator.dart';
+// import 'package:flutter_mall/widgets/home_top_navigator.dart';
 import 'package:flutter_mall/widgets/grid_page.dart';
 import 'package:flutter_mall/widgets/home_ad_banner.dart';
 import 'package:flutter_mall/widgets/home_leader_phone.dart';
@@ -10,7 +10,7 @@ import 'package:flutter_mall/widgets/home_floor_title.dart';
 import 'package:flutter_mall/widgets/home_floor_content.dart';
 import 'package:flutter_mall/widgets/home_hot_goods_title.dart';
 // 网络请求
-import 'package:flutter_mall/common/service/service_method.dart';
+import 'package:flutter_mall/common/service/home_service.dart';
 // 第三方
 import 'package:flutter_mall/widgets/home_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

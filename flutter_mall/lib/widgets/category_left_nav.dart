@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mall/common/service/service_method.dart';
+import 'package:flutter_mall/common/service/category_service.dart';
 import 'package:flutter_mall/models/category.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import 'package:flutter_mall/provide/category_child_provide.dart';
+import 'package:provide/provide.dart';
 
 /**
  * 分类左侧导航菜单
@@ -19,6 +22,7 @@ class CategoryLeftNav extends StatefulWidget {
 class _CategoryLeftNavState extends State<CategoryLeftNav> {
 
   List list=[];
+  var listIndex = 0;
 
   @override
   void initState() {
@@ -33,6 +37,8 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
     setState(() {
       list = category.data;
     });
+    // 第一次加载设置默认显示
+    Provide.value<CategoryChildProvide>(context).getChildCategory(list[0].bxMallSubDto);
   }
 
   @override
@@ -54,13 +60,21 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
   }
 
   Widget _leftInkWell(int index){
+    bool isClick = false;
+    isClick = (index == listIndex) ? true : false;
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        setState(() {
+          listIndex = index;
+        });
+        var childList = list[index].bxMallSubDto;
+        Provide.value<CategoryChildProvide>(context).getChildCategory(childList);
+      },
       child: Container(
         height: ScreenUtil().setHeight(100),
         padding: EdgeInsets.only(left:10.0,top:10.0),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: isClick ? Colors.black26 : Colors.white,
           border: Border(
             bottom: BorderSide(width: 1.0,color: Colors.black12)
           )
