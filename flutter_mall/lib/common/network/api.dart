@@ -12,5 +12,8 @@ class API {
   static const HOME = BASE_URL + '/wxmini/homePageContent';
   // 商城首页热卖商品
   static const HOME_HOT_GOODS = BASE_URL + '/wxmini/homePageBelowConten';
+  
+  // 商品类别
+  static const CATEGORY = BASE_URL + '/wxmini/getCategory';
 
 }

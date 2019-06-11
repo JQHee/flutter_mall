@@ -34,8 +34,9 @@ dependencies:
   url_launcher: ^5.0.1
   # 上、下拉加载
   flutter_easyrefresh: ^1.2.7
-
-
+  # 添加状态引用(给特定版本导入不了)
+  provide:
+   git: https://github.com/google/flutter-provide.git
 
 dev_dependencies:
   flutter_test:
