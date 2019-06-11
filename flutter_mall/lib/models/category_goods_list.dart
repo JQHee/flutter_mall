@@ -30,7 +30,7 @@ class CategoryGoodsList {
 class CategoryGoodsListData {
   String image;
   double oriPrice;
-  int presentPrice;
+  double presentPrice;
   String goodsName;
   String goodsId;
 

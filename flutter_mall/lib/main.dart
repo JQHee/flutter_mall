@@ -9,7 +9,8 @@ import 'package:flutter_mall/provide/category_child_provide.dart';
 
 // 源码：https://github.com/shenghy/flutter_shop
 // 序列教程： https://www.cnblogs.com/wangjunwei/tag/flutter/
-// 2019-06-10 -> 29
+// 当前进度：2019-06-10 -> 30
+// 总：66
 // json to dart模型: https://javiercbk.github.io/json_to_dart/
 
 /* Provide 全局配置

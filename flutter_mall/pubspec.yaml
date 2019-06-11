@@ -37,6 +37,8 @@ dependencies:
   # 添加状态引用(给特定版本导入不了)
   provide:
    git: https://github.com/google/flutter-provide.git
+  # 图片缓存
+  cached_network_image: ^0.8.0
 
 dev_dependencies:
   flutter_test:
