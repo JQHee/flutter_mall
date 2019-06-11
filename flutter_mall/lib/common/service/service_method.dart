@@ -42,10 +42,11 @@ Future<Category> getCategory() async {
   var fromData = {};
   HttpUtil httpUtil = HttpUtil();
   httpUtil.setOptions(HttpUtil.getDefOptions());
-  Response response = await httpUtil.post(API.HOME_HOT_GOODS, data: fromData);
+  Response response = await httpUtil.post(API.CATEGORY, data: fromData);
   if (response.statusCode == HttpStatus.ok || response.statusCode == HttpStatus.created) {
-        Utf8Decoder utf8decoder = Utf8Decoder(); //fix中文乱码
-      final result = json.decode(utf8decoder.convert(response.data));
+      Utf8Decoder utf8decoder = Utf8Decoder(); //fix中文乱码
+      
+      final result = json.decode(response.data);
       return Category.fromJson(result);
   } else {
     // throw Exception('后端接口出现异常，请检测代码和服务器情况.........');
