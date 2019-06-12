@@ -17,4 +17,48 @@ class RouterUtil {
       );
     }
 */
+
+  // pop或dismiss
+  static pop(BuildContext context) {
+    // 方式一
+    Navigator.of(context).pop();
+    //方式二
+    //Navigator.pop(context);
+  }
+
+  /* 第一种： push
+    // 方式一
+    Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) {
+                      return SecondPage();
+                })
+    );
+    // 方式二
+    Navigator.push(context,
+                  MaterialPageRoute(fullscreenDialog: true,
+                    builder: (context) { 
+                    return SecondPage();
+                  })
+      );
+   */
+
+  /* 第二种： present
+   // 方式一
+  Navigator.of(context).push(
+                MaterialPageRoute(
+                                    fullscreenDialog: true,
+                                    builder: (context) {
+                                        return SecondPage();
+                                  }
+                )
+  );
+  // 方式二
+  Navigator.push(context,
+                MaterialPageRoute(
+                  fullscreenDialog: true,
+                  builder: (context) { 
+                  return SecondPage();
+                })
+    );
+   */
 }
