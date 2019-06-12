@@ -101,16 +101,17 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
     // TODO: implement build
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, goodsList) {
-        return Container(
-        width: ScreenUtil().setWidth(570),
-        height: ScreenUtil().setHeight(976),
-        child: ListView.builder(
-          itemCount: goodsList.goodsList.length,
-          itemBuilder: (context, index) {
-            return _listWidget(goodsList.goodsList, index);
-          },
-        ),
-      );
+        return Expanded( // Expaned是有伸缩能力的小部件
+          child: Container(
+              width: ScreenUtil().setWidth(570),
+              child: ListView.builder(
+                itemCount: goodsList.goodsList.length,
+                itemBuilder: (context, index) {
+                  return _listWidget(goodsList.goodsList, index);
+                },
+              ),
+            )
+        );
       },
     ) ;
   }
