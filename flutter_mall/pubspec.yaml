@@ -44,6 +44,8 @@ dependencies:
   device_info : ^0.2.0
   # 吐丝弹窗
   fluttertoast: ^3.0.1
+  # 路由
+  fluro: ^1.4.0
 
 dev_dependencies:
   flutter_test:

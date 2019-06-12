@@ -10,6 +10,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'package:flutter_mall/routers/application.dart';
+
 /**
  * 类别的商品列表
  * 可上拉加载
@@ -102,7 +104,9 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
 
   Widget _listWidget(List newList, index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Application.router.navigateTo(context, '/detail?id=${newList[index].goodsId}');
+      },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
         decoration: BoxDecoration(
