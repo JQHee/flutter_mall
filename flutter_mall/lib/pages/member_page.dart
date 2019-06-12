@@ -22,7 +22,7 @@ class MemberPage extends StatelessWidget {
               child: Image.network(
                 'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=ef697b45db00baa1a52c41bb7711b9b1/0b55b319ebc4b74533fd01bfc5fc1e178a821529.jpg',
                 width: ScreenUtil().setWidth(140.0),
-                height: ScreenUtil().setHeight(140),
+                height: ScreenUtil().setHeight(140.0),
                 fit: BoxFit.fill,),
             ),
           ),
