@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
  * 分页查看器
  */
 
-class GridPage extends StatefulWidget {
+class HomeGridPage extends StatefulWidget {
 
   final List<Widget> children;
   final int column; //列数
@@ -15,7 +15,7 @@ class GridPage extends StatefulWidget {
   final double height; // 高度必须设置
   final EdgeInsets padding;
 
-  GridPage({
+  HomeGridPage({
     @required this.children,
     this.column = 4,
     this.row = 2,
@@ -28,11 +28,11 @@ class GridPage extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _GridPageState();
+    return _HomeGridPageState();
   }
 }
 
-class _GridPageState extends State<GridPage> {
+class _HomeGridPageState extends State<HomeGridPage> {
 
   ///每页的个数
   int _countPerPage;

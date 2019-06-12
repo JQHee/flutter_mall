@@ -1,7 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/common/service/category_service.dart';
 import 'package:flutter_mall/models/category_goods_list.dart';
+import 'package:flutter_mall/provide/category_goods_list_provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 
 /**
  * 类别的商品列表
@@ -20,35 +23,26 @@ class CategroyGoodsList extends StatefulWidget {
 class _CategroyGoodsListState extends State<CategroyGoodsList> {
 
   var page = 1;
-  List list = [];
-
-  _getGoodsList() async {
-    CategoryGoodsList goodsList = await getGoodsList(page, 4, "");
-    setState(() {
-      list = goodsList.data;
-    });
-  }
 
   @override
   void initState() {
     // TODO: implement initState
-    _getGoodsList();
     super.initState();
   }
 
-  Widget _goodsImage(index) {
+  Widget _goodsImage(List newList, index) {
     return Container(
       width: ScreenUtil().setWidth(200),
-      child: Image.network(list[index].image),
+      child: Image.network(newList[index].image),
     );
   }
 
-  Widget _goodsName(index) {
+  Widget _goodsName(List newList, index) {
     return Container(
       padding: EdgeInsets.all(5.0),
       width: ScreenUtil().setWidth(370),
       child: Text(
-        list[index].goodsName,
+        newList[index].goodsName,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         style: TextStyle(fontSize: ScreenUtil().setSp(28)),
@@ -56,18 +50,18 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
     );
   }
 
-  Widget _goodsPrice(index) {
+  Widget _goodsPrice(List newList, index) {
     return Container(
       margin: EdgeInsets.only(top: 20),
       width: ScreenUtil().setWidth(370),
       child: Row(
         children: <Widget>[
           Text(
-            '价格￥${list[index].presentPrice}',
+            '价格￥${newList[index].presentPrice}',
             style: TextStyle(color: Colors.pink, fontSize: ScreenUtil().setSp(30))
           ),
           Text(
-            '价格￥${list[index].oriPrice}',
+            '价格￥${newList[index].oriPrice}',
             style: TextStyle(color: Colors.black26, decoration: TextDecoration.lineThrough), // 删除线
           )
         ],
@@ -75,7 +69,7 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
     );
   }
 
-  Widget _listWidget(index) {
+  Widget _listWidget(List newList, index) {
     return InkWell(
       onTap: () {},
       child: Container(
@@ -88,11 +82,11 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
         ),
         child: Row(
           children: <Widget>[
-            _goodsImage(index),
+            _goodsImage(newList, index),
             Column(
               children: <Widget>[
-                _goodsName(index),
-                _goodsPrice(index),
+                _goodsName(newList, index),
+                _goodsPrice(newList, index),
               ],
             )
           ],
@@ -104,25 +98,21 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
   @override
   Widget build(BuildContext context) {
 
-  /*
-    double top = MediaQuery.of(context).padding.top;
-    if (top == 0) {
-      top = 20;
-    }
-    var height = 1334 - 44 * 2 - 80 * 2 - top * 2 - 50 * 2; 
-    */
-
     // TODO: implement build
-    return Container(
-      width: ScreenUtil().setWidth(570),
-      height: ScreenUtil().setHeight(976),
-      child: ListView.builder(
-        itemCount: list.length,
-        itemBuilder: (context, index) {
-          return _listWidget(index);
-        },
-      ),
-    );
+    return Provide<CategoryGoodsListProvide>(
+      builder: (context, child, goodsList) {
+        return Container(
+        width: ScreenUtil().setWidth(570),
+        height: ScreenUtil().setHeight(976),
+        child: ListView.builder(
+          itemCount: goodsList.goodsList.length,
+          itemBuilder: (context, index) {
+            return _listWidget(goodsList.goodsList, index);
+          },
+        ),
+      );
+      },
+    ) ;
   }
 
 }

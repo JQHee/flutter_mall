@@ -5,11 +5,13 @@ import 'package:flutter_mall/pages/index_page.dart';
 import 'package:provide/provide.dart';
 import 'package:flutter_mall/provide/counter.dart';
 import 'package:flutter_mall/provide/category_child_provide.dart';
+import 'package:flutter_mall/provide/category_goods_list_provide.dart';
 
 
 // 源码：https://github.com/shenghy/flutter_shop
 // 序列教程： https://www.cnblogs.com/wangjunwei/tag/flutter/
-// 当前进度：2019-06-10 -> 30
+// 一些常用的库：https://www.cnblogs.com/yangyxd/p/9232308.html
+// 当前进度：2019-06-10 -> 31
 // 总：66
 // json to dart模型: https://javiercbk.github.io/json_to_dart/
 
@@ -38,10 +40,12 @@ void main(){
 void main() {
   var counter = Counter();
   var categoryChild = CategoryChildProvide();
+  var categoryGoodsList = CategoryGoodsListProvide();
   var providers = Providers();
  
   providers
     ..provide(Provider<Counter>.value(counter))
+    ..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsList))
     ..provide(Provider<CategoryChildProvide>.value(categoryChild));
 
   runApp(

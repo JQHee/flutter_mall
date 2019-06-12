@@ -25,10 +25,10 @@ Future<Category> getCategory() async {
 }
 
 // 获取列表商品列表
-Future<CategoryGoodsList> getGoodsList(int page, int categoryId, String CategorySubId) async {
+Future<CategoryGoodsList> getGoodsList(int page, String categoryId, String CategorySubId) async {
   var fromData = {
     'page':page.toString(),
-    'categoryId': categoryId,
+    'categoryId': categoryId == null ? 4 : categoryId,
     'CategorySubId': CategorySubId
   };
   HttpUtil httpUtil = HttpUtil();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 // 自定义
 // import 'package:flutter_mall/widgets/home_top_navigator.dart';
-import 'package:flutter_mall/widgets/grid_page.dart';
+import 'package:flutter_mall/widgets/home_grid_page.dart';
 import 'package:flutter_mall/widgets/home_ad_banner.dart';
 import 'package:flutter_mall/widgets/home_leader_phone.dart';
 import 'package:flutter_mall/widgets/home_recommend.dart';
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                   child: ListView(
                     children: <Widget>[
                       HomeSwiper(swiperDataList: swiper),
-                      GridPage(children: navigatorItems, column: 5, row: 2, height: 190, padding: EdgeInsets.all(5),),
+                      HomeGridPage(children: navigatorItems, column: 5, row: 2, height: 190, padding: EdgeInsets.all(5),),
                       HomeAdBanner(adPicture: adPicture,),
                       HomeLeaderPhone(leaderImage: leaderImage,leaderPhone: leaderPhone,),
                       HomeRecommend(recommendList: recommendList,),

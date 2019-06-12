@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/common/service/category_service.dart';
 import 'package:flutter_mall/models/category.dart';
+import 'package:flutter_mall/models/category_goods_list.dart';
+import 'package:flutter_mall/provide/category_goods_list_provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter_mall/provide/category_child_provide.dart';
@@ -28,6 +30,7 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
   void initState() {
     // TODO: implement initState
      _getCategory();
+     _getGoodsList();
     super.initState();
   }
 
@@ -39,6 +42,13 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
     });
     // 第一次加载设置默认显示
     Provide.value<CategoryChildProvide>(context).getChildCategory(list[0].bxMallSubDto);
+  }
+
+  // 获取商品列表
+   _getGoodsList({String categoryId}) async {
+    CategoryGoodsList goodsList = await getGoodsList(1, categoryId, "");
+    // 更改右侧商品列表的值
+    Provide.value<CategoryGoodsListProvide>(context).getGoodsList(goodsList.data);
   }
 
   @override
@@ -68,7 +78,10 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
           listIndex = index;
         });
         var childList = list[index].bxMallSubDto;
+        var categoryId = list[index].mallCategoryId;
         Provide.value<CategoryChildProvide>(context).getChildCategory(childList);
+        // 获取商品数据
+        _getGoodsList(categoryId: categoryId);
       },
       child: Container(
         height: ScreenUtil().setHeight(100),
