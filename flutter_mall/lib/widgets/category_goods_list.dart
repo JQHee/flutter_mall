@@ -1,10 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_mall/common/service/category_service.dart';
 import 'package:flutter_mall/models/category_goods_list.dart';
+import 'package:flutter_mall/provide/category_child_provide.dart';
 import 'package:flutter_mall/provide/category_goods_list_provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 /**
  * 类别的商品列表
@@ -22,7 +26,33 @@ class CategroyGoodsList extends StatefulWidget {
 
 class _CategroyGoodsListState extends State<CategroyGoodsList> {
 
-  var page = 1;
+  GlobalKey<RefreshFooterState> _footerKey = new GlobalKey<RefreshFooterState>();
+  // 用于加载第一页，让商品列表会顶部
+  var scrollController = new ScrollController();
+
+
+  // 获取商品列表
+   _getMoreList() async {
+    Provide.value<CategoryChildProvide>(context).addPage();
+    String  categoryId = Provide.value<CategoryChildProvide>(context).categoryId;
+    String categorySubId = Provide.value<CategoryChildProvide>(context).subId;
+    int page = Provide.value<CategoryChildProvide>(context).page;
+    CategoryGoodsList goodsList = await getGoodsList(page, categoryId, categorySubId);
+    // 更改右侧商品列表的值
+    if (goodsList.data == null) {
+      Fluttertoast.showToast(
+        msg:'已经到底了',
+        toastLength: Toast.LENGTH_SHORT,//适应短的提示
+        gravity: ToastGravity.CENTER,//中间提示
+        backgroundColor: Colors.pink,
+        textColor: Colors.white,
+        fontSize: 16.0
+      );
+      Provide.value<CategoryChildProvide>(context).changNoMore('没有更多了');
+    } else {
+      Provide.value<CategoryGoodsListProvide>(context).getGoodsList(goodsList.data ?? []);
+    }
+  }
 
   @override
   void initState() {
@@ -62,7 +92,8 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
           ),
           Text(
             '价格￥${newList[index].oriPrice}',
-            style: TextStyle(color: Colors.black26, decoration: TextDecoration.lineThrough), // 删除线
+            overflow: TextOverflow.clip,
+            style: TextStyle(color: Colors.black26, fontSize: ScreenUtil().setSp(26), decoration: TextDecoration.lineThrough), // 删除线
           )
         ],
       ),
@@ -101,17 +132,49 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
     // TODO: implement build
     return Provide<CategoryGoodsListProvide>(
       builder: (context, child, goodsList) {
-        return Expanded( // Expaned是有伸缩能力的小部件
-          child: Container(
-              width: ScreenUtil().setWidth(570),
-              child: ListView.builder(
-                itemCount: goodsList.goodsList.length,
-                itemBuilder: (context, index) {
-                  return _listWidget(goodsList.goodsList, index);
-                },
-              ),
-            )
-        );
+
+        // 返回顶部
+        try {
+          if ( Provide.value<CategoryChildProvide>(context).page == 1) {
+            scrollController.jumpTo(0.0);
+          }
+        } catch (e) {
+          print('进入页面第一次初始化:${e}');
+        }
+      
+        if (goodsList.goodsList.length > 0) {
+          return Expanded( // Expaned是有伸缩能力的小部件
+            child: Container(
+                width: ScreenUtil().setWidth(570),
+                child: EasyRefresh(
+                    refreshFooter: ClassicsFooter(
+                    key: _footerKey,
+                    bgColor: Colors.white,
+                    textColor: Colors.pink,
+                    moreInfoColor: Colors.white,
+                    showMore: true,
+                    noMoreText: Provide.value<CategoryChildProvide>(context).noMoreText,
+                    moreInfo: '加载中',
+                    loadReadyText: '上拉加载...',
+                  ),
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: goodsList.goodsList.length,
+                    itemBuilder: (context, index) {
+                      return _listWidget(goodsList.goodsList, index);
+                    },
+                  ),
+                  loadMore:() async {
+                    print('上拉加载更多');
+                    _getMoreList();
+                  },
+                )
+              )
+          );
+        } else {
+          return Text('暂无数据');
+        }
+
       },
     ) ;
   }

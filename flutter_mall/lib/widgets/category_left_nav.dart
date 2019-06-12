@@ -40,15 +40,19 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
     setState(() {
       list = category.data;
     });
-    // 第一次加载设置默认显示
-    Provide.value<CategoryChildProvide>(context).getChildCategory(list[0].bxMallSubDto);
+    if (!list.isEmpty) {
+      var categoryId = list[0].mallCategoryId;
+      // 第一次加载设置默认显示
+      Provide.value<CategoryChildProvide>(context).getChildCategory(list[0].bxMallSubDto, categoryId);
+    }
+
   }
 
   // 获取商品列表
    _getGoodsList({String categoryId}) async {
     CategoryGoodsList goodsList = await getGoodsList(1, categoryId, "");
     // 更改右侧商品列表的值
-    Provide.value<CategoryGoodsListProvide>(context).getGoodsList(goodsList.data);
+    Provide.value<CategoryGoodsListProvide>(context).getGoodsList(goodsList.data ?? []);
   }
 
   @override
@@ -79,7 +83,7 @@ class _CategoryLeftNavState extends State<CategoryLeftNav> {
         });
         var childList = list[index].bxMallSubDto;
         var categoryId = list[index].mallCategoryId;
-        Provide.value<CategoryChildProvide>(context).getChildCategory(childList);
+        Provide.value<CategoryChildProvide>(context).getChildCategory(childList, categoryId);
         // 获取商品数据
         _getGoodsList(categoryId: categoryId);
       },

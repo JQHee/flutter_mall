@@ -11,7 +11,7 @@ import 'package:flutter_mall/provide/category_goods_list_provide.dart';
 // 源码：https://github.com/shenghy/flutter_shop
 // 序列教程： https://www.cnblogs.com/wangjunwei/tag/flutter/
 // 一些常用的库：https://www.cnblogs.com/yangyxd/p/9232308.html
-// 当前进度：2019-06-10 -> 31
+// 当前进度：2019-06-10 -> 36
 // 总：66
 // json to dart模型: https://javiercbk.github.io/json_to_dart/
 
