@@ -10,6 +10,7 @@ class MemberPage extends StatelessWidget {
 
   // 头部
   Widget _topHeader() {
+    String headImg = 'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=ef697b45db00baa1a52c41bb7711b9b1/0b55b319ebc4b74533fd01bfc5fc1e178a821529.jpg';
     return Container(
       width: ScreenUtil().setWidth(750),
       padding: EdgeInsets.all(20),
@@ -18,12 +19,9 @@ class MemberPage extends StatelessWidget {
         children: <Widget>[
           Container(
             margin: EdgeInsets.only(top: 30),
-            child: ClipOval(
-              child: Image.network(
-                'https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/image/h%3D300/sign=ef697b45db00baa1a52c41bb7711b9b1/0b55b319ebc4b74533fd01bfc5fc1e178a821529.jpg',
-                width: ScreenUtil().setWidth(140.0),
-                height: ScreenUtil().setHeight(140.0),
-                fit: BoxFit.fill,),
+            child: CircleAvatar(
+              radius: ScreenUtil().setWidth(70.0),
+              backgroundImage: NetworkImage(headImg),
             ),
           ),
           // 头像下面的文字
