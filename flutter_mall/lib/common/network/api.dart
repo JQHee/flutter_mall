@@ -17,5 +17,7 @@ class API {
   static const CATEGORY = BASE_URL + '/wxmini/getCategory';
   // 商品分类的商品列表
   static const CATEGORY_GOODS = BASE_URL + '/wxmini/getMallGoods';
+  // 商品详情
+  static const GOODS_DETAIL  = BASE_URL + '/wxmini/getGoodDetailById';
 
 }
