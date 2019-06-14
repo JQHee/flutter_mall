@@ -70,7 +70,7 @@ class GoodsDetailGoodInfo {
   String image2;
   String goodsSerialNumber;
   double oriPrice;
-  int presentPrice;
+  double presentPrice;
   String comPic;
   int state;
   String shopId;
