@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/provide/goods_info_provide.dart';
 import 'package:flutter_mall/widgets/goods_detail_expain.dart';
+import 'package:flutter_mall/widgets/goods_detail_tabbar.dart';
 import 'package:flutter_mall/widgets/goods_detail_top_area.dart';
+import 'package:flutter_mall/widgets/goods_detail_web.dart';
 import 'package:provide/provide.dart';
 
 /**
@@ -33,10 +35,12 @@ class DetailsPage extends StatelessWidget {
           // 判断是否有数据
           if (snapshot.hasData) {
             return Container(
-              child: Column(
+              child: ListView(
                 children: <Widget>[
                   GoodsDetailTopArea(),
                   GoodsDetailExpain(),
+                  GoodsDetailTabbar(),
+                  GoodsDetailWeb(),
                 ],
               ),
             );
