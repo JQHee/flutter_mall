@@ -76,10 +76,13 @@ class _IndexPageState extends State<IndexPage> {
             currentIndex: currentIndex,
             items: bottomTabs,
             onTap: (index){
+              Provide.value<CurrentIndexProvide>(context).changeIndex(index);
+              /*
               setState(() {
                 currentIndex = index;
                 currentPage = tabBodies[currentIndex];
               });
+              */
             },
           ),
           body: IndexedStack(

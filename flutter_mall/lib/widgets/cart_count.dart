@@ -74,7 +74,7 @@ class CartCount extends StatelessWidget {
        height: ScreenUtil().setHeight(45),//高度和加减号保持一样的高度
        alignment: Alignment.center,//上下左右居中
        color: Colors.white,//北京颜色 设置为白色
-       child: Text('1'),//先默认设置为1 因为后续是动态的获取数字
+       child: Text('${item.count}'),//先默认设置为1 因为后续是动态的获取数字
     );
   }
 
