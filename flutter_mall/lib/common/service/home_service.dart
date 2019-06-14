@@ -5,7 +5,9 @@ import 'package:flutter_mall/common/network/api.dart';
 import 'package:flutter_mall/common/network/http_header.dart';
 import 'package:flutter_mall/common/network/http_util.dart';
 
-// 获得商城首页信息的方法
+/**
+ * 获得商城首页信息的方法
+ */
 Future getHomePageContent() async {
   var fromData = {'lon':'115.02932','lat':'35.76189'};
   HttpUtil httpUtil = HttpUtil();
@@ -20,7 +22,9 @@ Future getHomePageContent() async {
 
 }
 
-// 获取首页热门商品
+/**
+ * 获取首页热门商品
+ */
 Future getHomeHotGoods(int page) async {
   var fromData = {'page':page.toString()};
   HttpUtil httpUtil = HttpUtil();

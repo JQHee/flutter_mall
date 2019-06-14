@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_networkimage/provider.dart';
 import 'package:flutter_advanced_networkimage/transition.dart';
+import 'package:flutter_mall/routers/application.dart';
+import 'package:flutter_mall/routers/router_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
@@ -38,11 +40,17 @@ class _HomeSwiperState extends State<HomeSwiper> {
       width: ScreenUtil().setWidth(750),
       child: Swiper(
         itemBuilder: (BuildContext context,int index){
-          return TransitionToImage(
+          return InkWell(
+            onTap: () {
+              RouterUtil.routeToDetailPage(context, widget.swiperDataList[index]['id']);
+              // Application.router.navigateTo(context, '/detail?id=${widget.swiperDataList[index]['id']}');
+            },
+            child: TransitionToImage(
               image: AdvancedNetworkImage("${widget.swiperDataList[index]['image']}"),
               fit: BoxFit.fill,
               placeholder: Image.asset('lib/images/default_loading.png'),
-            );
+            ),
+          );
         },
         itemCount: widget.swiperDataList.length,
         pagination: SwiperPagination(),

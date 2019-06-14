@@ -6,6 +6,7 @@ import 'package:provide/provide.dart';
 import 'package:flutter_mall/provide/counter.dart';
 import 'package:flutter_mall/provide/category_child_provide.dart';
 import 'package:flutter_mall/provide/category_goods_list_provide.dart';
+import 'package:flutter_mall/provide/goods_info_provide.dart';
 
 // 路由
 import 'package:fluro/fluro.dart';
@@ -16,7 +17,7 @@ import 'package:flutter_mall/routers/routers.dart';
 // 源码：https://github.com/shenghy/flutter_shop
 // 序列教程： https://www.cnblogs.com/wangjunwei/tag/flutter/
 // 一些常用的库：https://www.cnblogs.com/yangyxd/p/9232308.html
-// 当前进度：2019-06-10 -> 40 
+// 当前进度：2019-06-10 -> 43 
 // 已学习：1~40 64~66
 // 总：66
 // json to dart模型: https://javiercbk.github.io/json_to_dart/
@@ -47,6 +48,7 @@ void main() {
   var counter = Counter();
   var categoryChild = CategoryChildProvide();
   var categoryGoodsList = CategoryGoodsListProvide();
+  var goodsInfo = GoodsInfoProvide();
 
   var router = Router(); 
   Routers.configurreRoutes(router);
@@ -56,6 +58,7 @@ void main() {
  
   providers
     ..provide(Provider<Counter>.value(counter))
+    ..provide(Provider<GoodsInfoProvide>.value(goodsInfo))
     ..provide(Provider<CategoryGoodsListProvide>.value(categoryGoodsList))
     ..provide(Provider<CategoryChildProvide>.value(categoryChild));
 

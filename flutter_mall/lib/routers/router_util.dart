@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mall/pages/details_page.dart';
 
 /**
  * 路由 (无需使用fluro)
@@ -6,17 +7,16 @@ import 'package:flutter/material.dart';
 
 // 更多使用方法参考：https://www.jianshu.com/p/b4fa985a3c8f
 class RouterUtil {
-  /*
+
     static void routeToDetailPage(BuildContext context,String id) {
       Navigator.of(context).push(
           MaterialPageRoute(
               builder: (context){
-                return DetailPage(id: id);
+                return DetailsPage(goodId: id);
               }
           )
       );
     }
-*/
 
   // pop或dismiss
   static pop(BuildContext context) {

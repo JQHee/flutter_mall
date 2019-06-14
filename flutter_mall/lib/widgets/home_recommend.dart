@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mall/routers/application.dart';
+import 'package:flutter_mall/routers/router_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 /**
@@ -10,6 +12,7 @@ class HomeRecommend extends StatefulWidget {
   final List recommendList;
 
   const HomeRecommend({Key key, this.recommendList}) : super(key: key);
+
 
   @override
   State<StatefulWidget> createState() {
@@ -38,9 +41,12 @@ class _HomeRecommendState extends State<HomeRecommend> {
   }
 
   // 商品单项
-  Widget _item(index) {
+  Widget _item(context, index) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        RouterUtil.routeToDetailPage(context, widget.recommendList[index]['goodsId']);
+        // Application.router.navigateTo(context, '/detail?id=${widget.recommendList[index]['goodsId']}');
+      },
       child: Container(
         height: ScreenUtil().setHeight(330),
         width: ScreenUtil().setWidth(250),
@@ -75,7 +81,7 @@ class _HomeRecommendState extends State<HomeRecommend> {
         scrollDirection: Axis.horizontal,
         itemCount: widget.recommendList.length,
         itemBuilder: (context, index) {
-          return _item(index);
+          return _item(context, index);
         },
       ),
     );

@@ -6,6 +6,7 @@ import 'package:flutter_mall/common/service/category_service.dart';
 import 'package:flutter_mall/models/category_goods_list.dart';
 import 'package:flutter_mall/provide/category_child_provide.dart';
 import 'package:flutter_mall/provide/category_goods_list_provide.dart';
+import 'package:flutter_mall/routers/router_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -105,7 +106,8 @@ class _CategroyGoodsListState extends State<CategroyGoodsList> {
   Widget _listWidget(List newList, index) {
     return InkWell(
       onTap: () {
-        Application.router.navigateTo(context, '/detail?id=${newList[index].goodsId}');
+        // Application.router.navigateTo(context, '/detail?id=${newList[index].goodsId}');
+        RouterUtil.routeToDetailPage(context, newList[index].goodsId);
       },
       child: Container(
         padding: EdgeInsets.only(top: 5.0, bottom: 5.0),

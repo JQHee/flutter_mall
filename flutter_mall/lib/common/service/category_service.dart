@@ -8,7 +8,9 @@ import 'package:flutter_mall/common/network/http_util.dart';
 import 'package:flutter_mall/models/category.dart';
 import 'package:flutter_mall/models/category_goods_list.dart';
 
-// 获取分类左边列表
+/**
+ * 获取分类左边列表
+ */
 Future<Category> getCategory() async {
   var fromData = {};
   HttpUtil httpUtil = HttpUtil();
@@ -24,7 +26,9 @@ Future<Category> getCategory() async {
   }
 }
 
-// 获取列表商品列表
+/**
+ * 获取列表商品列表
+ */
 Future<CategoryGoodsList> getGoodsList(int page, String categoryId, String categorySubId) async {
   var fromData = {
     'page':page.toString(),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mall/routers/application.dart';
+import 'package:flutter_mall/routers/router_util.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
@@ -24,25 +26,28 @@ class _HomeFloorContentState extends State<HomeFloorContent> {
 
 
   // 每个子项拆分成item
-  Widget _goodsItem(Map goods) {
+  Widget _goodsItem(context, Map goods) {
     return Container(
       width: ScreenUtil().setWidth(375),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          RouterUtil.routeToDetailPage(context, goods['goodsId']);
+          // Application.router.navigateTo(context, '/detail?id=${goods['goodsId']}');
+        },
         child: Image.network(goods['image']),
       ),
     );
   }
 
   // 第一行 
-  Widget _firstRow() {
+  Widget _firstRow(context) {
     return Row(
       children: <Widget>[
-        _goodsItem(widget.floorGoodsList.first),
+        _goodsItem(context, widget.floorGoodsList.first),
         Column(
           children: <Widget>[
-            _goodsItem(widget.floorGoodsList[1]),
-            _goodsItem(widget.floorGoodsList[2])
+            _goodsItem(context, widget.floorGoodsList[1]),
+            _goodsItem(context, widget.floorGoodsList[2])
           ],
         )
       ],
@@ -50,11 +55,11 @@ class _HomeFloorContentState extends State<HomeFloorContent> {
   }
 
   // 第二行 
-  Widget _otherGoods() {
+  Widget _otherGoods(context) {
     return Row(
       children: <Widget>[
-        _goodsItem(widget.floorGoodsList[3]),
-        _goodsItem(widget.floorGoodsList[4])
+        _goodsItem(context, widget.floorGoodsList[3]),
+        _goodsItem(context, widget.floorGoodsList[4])
       ],
     );
   }
@@ -65,8 +70,8 @@ class _HomeFloorContentState extends State<HomeFloorContent> {
     return Container(
       child: Column(
         children: <Widget>[
-          _firstRow(),
-          _otherGoods()
+          _firstRow(context),
+          _otherGoods(context)
         ],
       ),
     );
