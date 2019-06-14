@@ -4,6 +4,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provide/provide.dart';
 
 
+/**
+ * 详情页头部区域
+ */
+
 class GoodsDetailTopArea extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {

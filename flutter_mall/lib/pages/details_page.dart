@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/provide/goods_info_provide.dart';
+import 'package:flutter_mall/widgets/goods_detail_expain.dart';
 import 'package:flutter_mall/widgets/goods_detail_top_area.dart';
 import 'package:provide/provide.dart';
 
@@ -35,6 +36,7 @@ class DetailsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   GoodsDetailTopArea(),
+                  GoodsDetailExpain(),
                 ],
               ),
             );
