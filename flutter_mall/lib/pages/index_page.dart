@@ -5,7 +5,9 @@ import 'package:flutter_mall/pages/home_page.dart';
 import 'package:flutter_mall/pages/cart_page.dart';
 import 'package:flutter_mall/pages/category_page.dart';
 import 'package:flutter_mall/pages/member_page.dart';
+import 'package:flutter_mall/provide/current_index_provide.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provide/provide.dart';
 
 /**
  * tabbar 底部导航
@@ -48,13 +50,13 @@ class _IndexPageState extends State<IndexPage> {
     MemberPage()
   ];
 
-  int currentIndex = 0; // 当前索引
+  // int currentIndex = 0; // 当前索引
   var currentPage;
 
   @override
   void initState() {
     // 默认
-    currentPage = tabBodies[currentIndex];
+    // currentPage = tabBodies[currentIndex];
     super.initState();
   }
 
@@ -64,23 +66,28 @@ class _IndexPageState extends State<IndexPage> {
         // 适配
     ScreenUtil.instance = ScreenUtil(width: 750,height: 1334)..init(context);
     // TODO: implement build
-    return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 255, 255, 1),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        items: bottomTabs,
-        onTap: (index){
-          setState(() {
-            currentIndex = index;
-            currentPage = tabBodies[currentIndex];
-          });
-        },
-      ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: tabBodies,
-      )
+    return Provide<CurrentIndexProvide>(
+      builder: (context, child, value) {
+        int currentIndex=Provide.value<CurrentIndexProvide>(context).currentIndex;
+        return Scaffold(
+          backgroundColor: Color.fromRGBO(244, 255, 255, 1),
+          bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: currentIndex,
+            items: bottomTabs,
+            onTap: (index){
+              setState(() {
+                currentIndex = index;
+                currentPage = tabBodies[currentIndex];
+              });
+            },
+          ),
+          body: IndexedStack(
+            index: currentIndex,
+            children: tabBodies,
+          )
+        );
+      },
     );
   }
 

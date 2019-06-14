@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mall/provide/goods_info_provide.dart';
+import 'package:flutter_mall/widgets/goods_detail_bottom.dart';
 import 'package:flutter_mall/widgets/goods_detail_expain.dart';
 import 'package:flutter_mall/widgets/goods_detail_tabbar.dart';
 import 'package:flutter_mall/widgets/goods_detail_top_area.dart';
@@ -34,16 +35,29 @@ class DetailsPage extends StatelessWidget {
         builder: (context, snapshot) {
           // 判断是否有数据
           if (snapshot.hasData) {
-            return Container(
-              child: ListView(
-                children: <Widget>[
-                  GoodsDetailTopArea(),
-                  GoodsDetailExpain(),
-                  GoodsDetailTabbar(),
-                  GoodsDetailWeb(),
-                ],
-              ),
+
+            return Stack(
+              children: <Widget>[
+                Container(
+                  child: ListView(
+                    children: <Widget>[
+                      GoodsDetailTopArea(),
+                      GoodsDetailExpain(),
+                      GoodsDetailTabbar(),
+                      GoodsDetailWeb(),
+                    ],
+                  ),
+                ),
+
+                Positioned( // 底部锁定条
+                  bottom: 0,
+                  left: 0,
+                  child: GoodsDetailBottom(),
+                )
+
+              ],
             );
+
           } else {
             return Text('加载中');
           }
