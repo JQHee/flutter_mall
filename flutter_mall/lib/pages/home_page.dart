@@ -16,6 +16,9 @@ import 'package:flutter_mall/widgets/home_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
+// 版本更新提示
+import 'package:flutter_mall/common/Updater.dart';
+
 /**
  * 首页
  */
@@ -195,6 +198,10 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin 
                   ),
                   child: ListView(
                     children: <Widget>[
+                      // Updater(child:new Offstage(
+                      //   offstage: true, //这里控制
+                      //   child: Container(color: Colors.white,height: ScreenUtil().setHeight(1334),width: ScreenUtil().setWidth(750),),
+                      // ),),
                       HomeSwiper(swiperDataList: swiper),
                       HomeGridPage(children: navigatorItems, column: 5, row: 2, height: 190, padding: EdgeInsets.all(5),),
                       HomeAdBanner(adPicture: adPicture,),
